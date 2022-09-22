@@ -14,9 +14,7 @@ We use the NYC Taxi Green dataset which collected from January 2020 to July 2021
  
 [NYC dataset](https://drive.google.com/file/d/1Bx17np6cYdB7fZDR64aKgyHSfcKyhNVC/view?usp=sharing) 
 
-Data was transformed to different file types, and we will deal with them in Synapse Workspace to ingest / Tranform and Load data by using Serverless Pool:
-
-![file type](https://user-images.githubusercontent.com/63108802/191794474-f733eb4c-2ac1-4e49-94b3-cf605c4f1e4c.PNG)
+Data was transformed to different file types, and we will deal with them in Synapse Workspace to Ingest, Tranform and Load data by using Serverless Pool:
 
 **Dimension Table**
 1. Taxi  Zone 
@@ -44,7 +42,59 @@ Data was transformed to different file types, and we will deal with them in Syna
     - Parquet file with Partitioned by Year and Month 
     - Delta file with Partitioned by Year and Month 
 
+![file type](https://user-images.githubusercontent.com/63108802/191794474-f733eb4c-2ac1-4e49-94b3-cf605c4f1e4c.PNG)
+
 -----
+## What is Serverless SQL Pool? 
+We mainly use Serverless SQL Pool for doing ETL. 
+
+Serverless SQL pool is a Serverless Distributed Query Engine that can use to query data over Datalake by T-SQL. Serverless SQL pool has no storage suppored, so it is the way to save the cost. Serverless SQL will charge when query (pay-per-use Model). When we run the query, It will go to Data Source and get the data from there, we can keep those data as an External Table in Serverless SQL Pool. 
+
+Creating an External Table need to identfy 
+   - External Data Source 
+   - External File Format 
+ 
+ Example: Using Taxi_Zone.csv file and Create External table in Serverless SQL Pool. 
+ Using OPENROWSET() function to point out the Data Source and Identify File Format. We also specify Schema using WITH() clause. 
+ 
+````
+
+SELECT
+    *
+FROM
+    OPENROWSET(
+        BULK 'taxi_zone.csv',
+        DATA_SOURCE = 'nyc_taxi_raw',
+        FORMAT = 'CSV',
+        PARSER_VERSION = '2.0',
+        FIRSTROW = 2,
+        FIELDTERMINATOR = ',',
+        ROWTERMINATOR = '\n'
+    ) 
+    WITH (
+        LocationID   SMALLINT 1, 
+        Borough      VARCHAR(15) 2, 
+        Zone         VARCHAR(50) 3,
+        service_zone VARCHAR(15) 4
+    )AS [result]
+
+````
+Note: Specify Schema that fit to the data, it can reduce the query cost. 
+
+----------------------------
+## WorkFlow
+
 ![Serverless](https://user-images.githubusercontent.com/63108802/191794945-a1579a91-d86c-499e-abda-0d0ec53e53e7.PNG)
 
+**Main Step**
+1. Discovery ( Exploratory Data) with T-SQL 
+2. Create External Table (Bronze Schema) - To ingest data and create External Table/View only, But we haven't transform it yet. 
+3. Create External Table (Silver) - Transform data in an appropriate format 
+4. Create External Table (Gold) - Join Table for using for an Analysis in PowerBII, or for keeping in Data Warehouse (Dedicated SQL Pool)
+5. Create Pipeline and Schedule for run Trigger from Bronze to Gold
+6. Create PowerBI Dashboard 
 
+**Additional Step**
+1. Transform data with Spark Pool (Notebooks) 
+2. Query Data from Azure Cosmos DB (for Real-Time data, saving as JSON file) 
+3. Provision Dedicated SQL Pool to keep Final data (Gold) 
