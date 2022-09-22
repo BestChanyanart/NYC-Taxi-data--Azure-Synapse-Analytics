@@ -2,10 +2,9 @@
 
 ![Synapse Tool](https://user-images.githubusercontent.com/63108802/191794330-2383b89c-771e-4f3b-952f-7233a81c8124.PNG)
 
+This is a part of Udemy course that I enrolled on Udemy. [Azure Synapse Analytics For Data Engineers-Hands On Project](https://www.udemy.com/course/azure-synapse-analytics-for-data-engineers) I'm interested in Azure for a while, and would like to deep dive into it. Azure Synapse Analytics is a unified platform, where we can manage data from end to end.
 
-This course is one of Udemy course: [Azure Synapse Analytics For Data Engineers-Hands On Project](https://www.udemy.com/course/azure-synapse-analytics-for-data-engineers) Azure Synapse Analytics is a unified platform, where we can manage data from end to end.
-
-We use the NYC Taxi Green dataset which collected from January 2020 to July 2021, the dataset comes with different file types, so we have to deal with ingesting those different types to Synapse workspace. 
+NYC Taxi Green is a dataset in this course, which collected from January 2020 to July 2021. Dataset comes with different file types, so we have to deal with ingesting those different types to Synapse workspace. 
 
 ![NYC taxi](https://user-images.githubusercontent.com/63108802/191794215-6b12b1c1-2d9d-4e62-b86e-36e3d446dd78.PNG)
 
@@ -92,9 +91,9 @@ Note: Specify Schema that fit to the data, it can reduce the query cost.
 3. Create External Table (Silver) - Transform data in an appropriate format 
 4. Create External Table (Gold) - Join Table for using for an Analysis in PowerBII, or for keeping in Data Warehouse (Dedicated SQL Pool)
 5. Create Pipeline and Schedule for run Trigger from Bronze to Gold
-6. Create PowerBI Dashboard 
 
 **Additional Step**
 1. Transform data with Spark Pool (Notebooks) 
 2. Query Data from Azure Cosmos DB (for Real-Time data, saving as JSON file) 
 3. Provision Dedicated SQL Pool to keep Final data (Gold) 
+4. Create Dashboard in PowerBI, connecting to Azure Synapse Analytics and publish to web
