@@ -2,7 +2,7 @@
 
 ![Synapse Tool](https://user-images.githubusercontent.com/63108802/191794330-2383b89c-771e-4f3b-952f-7233a81c8124.PNG)
 
-This is a part of Udemy course that I enrolled on Udemy. [Azure Synapse Analytics For Data Engineers-Hands On Project](https://www.udemy.com/course/azure-synapse-analytics-for-data-engineers) I'm interested in Azure for a while, and would like to deep dive into it. Azure Synapse Analytics is a unified platform, where we can manage data from end to end.
+This is a part of Udemy course that I enrolled on Udemy. [Azure Synapse Analytics For Data Engineers-Hands On Project](https://www.udemy.com/course/azure-synapse-analytics-for-data-engineers) I'm interested in Azure for a year, and would like to deep dive into it more. So, I decided to take the course. Azure Synapse Analytics is a unified platform, where we can manage data from end to end. There are tools for Extract, Transform and Load within workspace. 
 
 NYC Taxi Green is a dataset in this course, which collected from January 2020 to July 2021. Dataset comes with different file types, so we have to deal with ingesting those different types to Synapse workspace. 
 
