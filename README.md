@@ -89,7 +89,7 @@ Note: Specify Schema that fit to the data, it can reduce the query cost.
 1. Discovery ( Exploratory Data) with T-SQL 
 2. Create External Table (Bronze Schema) - To ingest data and create External Table/View only, But we haven't transform it yet. 
 3. Create External Table (Silver) - Transform data in an appropriate format 
-4. Create External Table (Gold) - Join Table for using for an Analysis in PowerBII, or for keeping in Data Warehouse (Dedicated SQL Pool)
+4. Create External Table (Gold) - Join Table for using for an Analysis in PowerBI, or for keeping in Data Warehouse (Dedicated SQL Pool)
 5. Create Pipeline and Schedule for run Trigger from Bronze to Gold
 
 **Additional Step**
